@@ -1,0 +1,272 @@
+@import '@/assets/styles/colors.scss';
+.overlay{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(#42475c, 0.8);
+  transition: 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -20;
+  &.active{
+    z-index: 55;
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.popup{
+  width: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  // background: #E4EBF7;
+  box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.253453);
+  background-color: $greyLight;
+  box-sizing: border-box;
+  z-index: 25;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+  transition-timing-function: ease-in-out;
+  border-radius: 2px;
+  // &:before, &:after{
+  //   content: "";
+  //   position: absolute;
+  //   left: 0;
+  //   height: 5px;
+  //   width: 100%;
+  //   background-color: $green;
+  //   opacity: 0.3;
+  // }
+  // &:before{
+  //   top: 0;
+  // }
+  // &:after{
+  //   bottom: 0;
+  // }
+  padding-bottom: 20px;
+  &.loading{
+    filter: blur(2px);
+  }
+  &.poll{
+    width: 450px;
+  }
+  &.terms{
+    // height: 600px;
+    overflow: hidden;
+    line-height: 1.4;
+    font-size: 12px;
+  }
+  &.outcomes{
+    width: 750px;
+  }
+  &.register{
+    width: 304px;
+    padding-bottom: 0;
+  }
+  &.login{
+    width: 304px;
+    padding-bottom: 0;
+  }
+  &.active{
+    pointer-events: all;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+  }
+  &__close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    z-index: 60;
+    &:active{
+      transform: scale(1.02);
+    }
+    &:before, &:after{
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 0px;
+      height: 1px;
+      width: 20px;
+      background-color: $white;
+      transition: 0.2s;
+    }
+    &:before{
+      transform: rotate(-45deg);
+    }
+    &:after{
+      transform: rotate(45deg);
+    }
+    &:hover{
+      &:before, &:after{
+        background-color: $pink;
+      }
+    }
+  }
+  &__checkbox{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__buttons{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  &__title{
+    text-transform: uppercase;
+    line-height: 24px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    text-align: left;
+    font-family: "SFSportsNight";
+  }
+  &__terms{
+    overflow-y: auto;
+    height: 400px;
+  }
+  &__wrapper{
+    height: 100%;
+    overflow: hidden;
+
+  }
+  &__inner{
+    overflow-y: auto;
+    height: 100%;
+    max-height: 810px;
+    padding: 28px 32px 0;
+    box-sizing: border-box;
+  }
+  &__form{
+
+  }
+  &__desc{
+    // width: 315px;
+    margin: 16px auto 0;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #7b8492;
+  }
+  &__big-link{
+    position: relative;
+    margin-top: 24px;
+    padding: 15px 0;
+    font-size: 13px;
+    letter-spacing: 0.25px;
+    color: $white;
+    cursor: pointer;
+    &:hover{
+      text-decoration: underline;
+    }
+    &:before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -32px;
+      width: calc(100% + 64px);
+      height: 1px;
+      border-top: 0.5px solid #797C8A;
+    }
+  }
+  &__link{
+    position: relative;
+    text-decoration: none;
+    color: $white;
+    opacity: 1;
+  }
+}
+
+.popup-form{
+  margin-top: 10px;
+  &__row{
+    margin-bottom: 32px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  &__button{
+    margin: 32px auto 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .popup{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+    &.poll{
+      width: 80%;
+      height: 390px;
+      padding: 0;
+      .popup__inner{
+        padding: 20px 15px;
+      }
+    }
+    &.login{
+      width: 100%;
+    }
+    &.register{
+      width: 100%;
+    }
+    &.outcomes{
+      width: 100%;
+    }
+    &.login{
+      .popup__wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+    &.register{
+      height: 100vh;
+    }
+    &__wrapper{
+      width: 100%;
+    }
+    &__inner{
+      height: 100%;
+      width: 100%;
+      padding: 60px 25px;
+      box-sizing: border-box;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+    &__close-btn{
+      top: 30px;
+      right: 30px;
+      height: 25px;
+      width: 25px;
+      &:before, &:after{
+        top: 12px;
+        width: 25px;
+      }
+    }
+    &__desc{
+      width: 80%;
+    }
+  }
+  .popup-form{
+    width: 80%;
+    margin: auto;
+    &__input{
+      font-size: 14px;
+    }
+  }
+}
